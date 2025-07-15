@@ -1,17 +1,49 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import checked from "../assets/images/checked.png";
 import unchecked from "../assets/images/unchecked.png";
 import del from "../assets/images/delete.png";
+import edit from "../assets/images/edit.png";
 
-const TodoItems = () => {
+const TodoItems = ({ text }) => {
+  ///Show full itemText
+  const [showFulltext, setShowFullText] = useState(false);
+  let todoText = text;
+  if (!showFulltext) {
+    todoText = todoText.substring(0, 60);
+  }
+  function handleShow() {
+    setShowFullText((prev) => !prev);
+  }
+
+  const checkLenght = text.length > 60;
+  const fullText = showFulltext ? (
+    <p>show less</p>
+  ) : (
+    <span className="nowrap">...more</span>
+  );
+
   return (
     <main className="main">
-      <div className="todo-item">
+      <div className="item-container">
         <div className="item">
-          <img src={checked} alt="" width="18" />
-          <p>Hello</p>
+          <img src={checked} alt="check icon" width="20" height="20" />
+          <div className="todo-text">
+            {todoText}
+            <div onClick={handleShow} className="show">
+              {checkLenght && fullText}
+            </div>
+          </div>
         </div>
-        <img src={del} alt="" width="22" />
+        <div className="update-icon">
+          <img src={edit} alt="" width="22" height="22" />
+          <img
+            className="delete-todo"
+            src={del}
+            alt="delete icon"
+            width="22"
+            height="22"
+          />
+        </div>
       </div>
     </main>
   );

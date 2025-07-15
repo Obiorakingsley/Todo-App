@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import listicon from "../assets/images/list.png";
 import TodoItems from "./TodoItems";
 
@@ -15,7 +15,8 @@ const Todo = () => {
           <button>Add</button>
         </div>
       </header>
-      <TodoItems />
+      <TodoItems text="hello world" />
+      <TodoItems text="Hi" />
     </div>
   );
 };
