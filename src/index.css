@@ -5,11 +5,10 @@
 }
 
 body {
-  background-color: #ffffff;
   color: #000000;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
-  padding: 0.5rem;
+  background-color: #000;
 }
 
 .nowrap {
@@ -17,7 +16,11 @@ body {
 }
 
 .todo-container {
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
+  max-width: 768px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
 }
 
 /***Header***/

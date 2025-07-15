@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import listicon from "../assets/images/list.png";
 import TodoItems from "./TodoItems";
+import Confetti from "react-confetti";
 
 const Todo = () => {
   const [todo, setTodo] = useState([]);
@@ -8,7 +9,7 @@ const Todo = () => {
 
   //Get text from input
   function handleChange(event) {
-    const text = event.target.value.trim();
+    const text = event.target.value;
     setInputText(text);
   }
 
@@ -45,6 +46,8 @@ const Todo = () => {
     );
   }
 
+  const completed = todo.every((item) => item.isComplete);
+
   //Loop through todos Array
   const todos = todo.map((todo, index) => {
     return (
@@ -64,6 +67,7 @@ const Todo = () => {
 
   return (
     <div className="todo-container">
+      {completed && <Confetti recycle={false} numberOfPieces={800} />}
       <header className="header">
         <nav className="navbar">
           <img src={listicon} alt="" width="40" height="40" />
