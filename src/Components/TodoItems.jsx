@@ -4,8 +4,10 @@ import unchecked from "../assets/images/unchecked.png";
 import del from "../assets/images/delete.png";
 import edit from "../assets/images/edit.png";
 
-const TodoItems = ({ text }) => {
-  ///Show full itemText
+const TodoItems = (props) => {
+  const { text } = props;
+
+  ///Show more/show full text
   const [showFulltext, setShowFullText] = useState(false);
   let todoText = text;
   if (!showFulltext) {

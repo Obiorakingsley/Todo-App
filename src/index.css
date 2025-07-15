@@ -62,6 +62,7 @@ body {
   outline: none;
   border: none;
   color: #ffffff;
+  cursor: pointer;
   background-color: #31ba7c;
 }
 
@@ -76,6 +77,7 @@ body {
   display: flex;
   gap: 0.5rem;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 .todo-text {
   max-width: 70vw;
@@ -96,4 +98,8 @@ body {
 .update-icon {
   display: flex;
   gap: 0.5rem;
+}
+
+.update-icon img {
+  cursor: pointer;
 }
