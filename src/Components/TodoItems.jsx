@@ -5,7 +5,7 @@ import del from "../assets/images/delete.png";
 import edit from "../assets/images/edit.png";
 
 const TodoItems = (props) => {
-  const { text } = props;
+  const { text, isComplete, toggleChecked } = props;
 
   ///Show more/show full text
   const [showFulltext, setShowFullText] = useState(false);
@@ -24,11 +24,13 @@ const TodoItems = (props) => {
     <span className="nowrap">...more</span>
   );
 
+  const completed = isComplete ? checked : unchecked;
+
   return (
     <main className="main">
       <div className="item-container">
-        <div className="item">
-          <img src={checked} alt="check icon" width="20" height="20" />
+        <div onClick={toggleChecked} className="item">
+          <img src={completed} alt="check icon" width={20} height={20} />
           <div className="todo-text">
             {todoText}
             <div onClick={handleShow} className="show">

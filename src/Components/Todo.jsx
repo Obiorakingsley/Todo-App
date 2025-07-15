@@ -20,7 +20,7 @@ const Todo = () => {
     const newTodo = {
       text: inputText,
       isComplete: false,
-      id: Date.now(),
+      id: todo.length,
     };
 
     setTodo((prev) => {
@@ -29,10 +29,27 @@ const Todo = () => {
     setInputText("");
   }
 
+  function toggleChecked(id) {
+    setTodo(
+      todo.map((item) => {
+        return item.id === id
+          ? { ...item, isComplete: !item.isComplete }
+          : item;
+      })
+    );
+  }
+
   //Loop through todos Array
-  const todos = todo.map((todo) => {
+  const todos = todo.map((todo, index) => {
     return (
-      <TodoItems text={todo.text} key={todo.id} isComplete={todo.isComplete} />
+      <TodoItems
+        text={todo.text}
+        key={index}
+        toggleChecked={() => {
+          toggleChecked(todo.id);
+        }}
+        isComplete={todo.isComplete}
+      />
     );
   });
 
