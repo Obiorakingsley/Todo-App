@@ -5,7 +5,7 @@ import del from "../assets/images/delete.png";
 import edit from "../assets/images/edit.png";
 
 const TodoItems = (props) => {
-  const { text, isComplete, toggleChecked } = props;
+  const { text, isComplete, toggleChecked, deleteTodo } = props;
 
   ///Show more/show full text
   const [showFulltext, setShowFullText] = useState(false);
@@ -41,6 +41,7 @@ const TodoItems = (props) => {
         <div className="update-icon">
           <img src={edit} alt="" width="22" height="22" />
           <img
+            onClick={deleteTodo}
             className="delete-todo"
             src={del}
             alt="delete icon"

@@ -29,6 +29,12 @@ const Todo = () => {
     setInputText("");
   }
 
+  function deleteTodo(id) {
+    setTodo((prev) => {
+      return prev.filter((item) => item.id !== id);
+    });
+  }
+  //Uncheck/Check items
   function toggleChecked(id) {
     setTodo(
       todo.map((item) => {
@@ -49,6 +55,9 @@ const Todo = () => {
           toggleChecked(todo.id);
         }}
         isComplete={todo.isComplete}
+        deleteTodo={() => {
+          deleteTodo(todo.id);
+        }}
       />
     );
   });
