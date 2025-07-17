@@ -28,6 +28,15 @@ The app includes custom icons for different states and themes, and provides visu
 - 💾 Persistent storage using localStorage
 - ⌨️ Keyboard support (Enter key to add/save tasks)
 
+---
+
+## 🛠️ Tech Stack
+- **Frontend**: [React/HTML/CSS]
+- **Styling**: [CSS]  
+- **Deployment**: [Vercel]  
+
+---
+
 ## Installation
 
 1. Clone the repository:
