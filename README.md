@@ -12,8 +12,11 @@ This is a feature-rich To-Do List application built with React that allows users
 - Responsive design with intuitive UI
 
 The app includes custom icons for different states and themes, and provides visual feedback for user interactions.
+## 📸
+<img src="./public/screenshot.png" alt="App Screenshot" width="400" />
 
-![Screenshot](./screenshot.png)
+## 📸
+<img src="./public/screenshot1.png" alt="App Screenshot" width="400" />
 
 ## Features
 
