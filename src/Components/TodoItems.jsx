@@ -1,12 +1,23 @@
 import React, { useRef, useState } from "react";
 import checked from "../assets/images/checked.png";
-import unchecked from "../assets/images/unchecked.png";
+import lightChecked from "../assets/images/unchecked.png";
+import darkUnchecked from "../assets/images/unchecked_dark.png";
 import del from "../assets/images/delete.png";
 import edit from "../assets/images/edit.png";
+import darkEdit from "../assets/images/edit_dark.png";
 
 const TodoItems = (props) => {
-  const { text, isComplete, toggleChecked, deleteTodo, editTodo, isEdit } =
-    props;
+  const {
+    text,
+    isComplete,
+    toggleChecked,
+    deleteTodo,
+    editTodo,
+    isEdit,
+    lightTheme,
+  } = props;
+
+  const unchecked = lightTheme ? lightChecked : darkUnchecked;
 
   ///Show more/show full text
   const [showFulltext, setShowFullText] = useState(false);
@@ -46,7 +57,13 @@ const TodoItems = (props) => {
         </div>
       </div>
       <div className="update-icon">
-        <img onClick={editTodo} src={edit} alt="" width="22" height="22" />
+        <img
+          onClick={editTodo}
+          src={lightTheme ? edit : darkEdit}
+          alt=""
+          width="22"
+          height="22"
+        />
         <img
           onClick={deleteTodo}
           className="delete-todo"

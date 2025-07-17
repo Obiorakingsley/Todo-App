@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import listicon from "../assets/images/list.png";
+import darkListicon from "../assets/images/list_dark.png";
 import TodoItems from "./TodoItems";
-import Confetti from "react-confetti";
+import Confetti from "../Components/Confetti";
+import Light from "../assets/images/light.png";
+import Dark from "../assets/images/dark.png";
 
 const Todo = () => {
   const [todo, setTodo] = useState(loadFromStorage() || []);
   const [inputText, setInputText] = useState("");
+  const [lightTheme, setLightTheme] = useState(true);
 
   //Load items from localStorage
   function loadFromStorage() {
@@ -16,7 +20,10 @@ const Todo = () => {
   //Save items to localStorage
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(todo));
-  }, [todo, inputText]);
+
+    const edit = todo.every((item) => !item.edit);
+    edit && setInputText("");
+  }, [todo]);
 
   //Get text from input
   function handleChange(event) {
@@ -64,6 +71,18 @@ const Todo = () => {
     });
   }
 
+  //Update Theme
+
+  function handleTheme() {
+    setLightTheme((prev) => !prev);
+  }
+
+  useEffect(() => {
+    !lightTheme
+      ? document.body.classList.add("dark-theme")
+      : document.body.classList.remove("dark-theme");
+  }, [lightTheme]);
+
   //Save Edit
   function saveEdit() {
     if (!inputText) return;
@@ -100,6 +119,7 @@ const Todo = () => {
       <TodoItems
         text={todo.text}
         key={todo.id}
+        lightTheme={lightTheme}
         toggleChecked={() => {
           toggleChecked(todo.id);
         }}
@@ -132,13 +152,26 @@ const Todo = () => {
 
   return (
     <div className="todo-container">
-      {completed && todo.length > 0 && (
-        <Confetti recycle={false} numberOfPieces={800} />
-      )}
+      {completed && todo.length > 0 && <Confetti />}
       <header className="header">
         <nav className="navbar">
-          <img src={listicon} alt="" width="40" height="40" />
-          <h1>To-Do List</h1>
+          <div className="navbar-left">
+            <img
+              src={lightTheme ? listicon : darkListicon}
+              alt=""
+              width="40"
+              height="40"
+            />
+            <h1>To-Do List</h1>
+          </div>
+          <img
+            className="theme-icon"
+            onClick={handleTheme}
+            src={lightTheme ? Dark : Light}
+            alt=""
+            width={30}
+            height={30}
+          />
         </nav>
         <div className="todo-input">
           <input
@@ -151,6 +184,7 @@ const Todo = () => {
           <button onClick={updateTodo}>{hasTrue ? "Save" : "Add"}</button>
         </div>
       </header>
+
       <main>{todos}</main>
     </div>
   );

@@ -5,33 +5,62 @@
 }
 
 body {
-  color: #000000;
+  color: var(--TEXT-COLOR);
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
-  background-color: #fafafa;
-  min-width: 350px;
+  background-color: var(--BGCOLOR);
+  min-width: 320px;
+  letter-spacing: 0.5px;
 }
 
-.nowrap {
+:root {
+  --SHOW-COLOR: #050505;
+  --BGCOLOR: #fafafa;
+  --HEADER-BGCOLOR: whitesmoke;
+  --INPUT-BGCOLOR: rgb(231, 227, 227);
+  --INPUT-BTN-BGCOLOR: #31ba7c;
+  --INPUT-BTN-COLOR: #fff;
+  --EDIT-BGCOLOR: #d4cfcf;
+  --TEXT-COLOR: #000;
+  --BORDER-COLOR: rgb(236, 230, 230);
+  --COMPLETED-COLOR: #9c9292;
+  --BOX-SHADOW-COLOR: rgb(179, 176, 176);
+}
+
+.dark-theme {
+  --SHOW-COLOR: #fff;
+  --BGCOLOR: #1f1f1f;
+  --HEADER-BGCOLOR: rgb(56, 53, 53);
+  --INPUT-BGCOLOR: rgb(97, 93, 93);
+  --INPUT-BTN-BGCOLOR: #fff;
+  --INPUT-BTN-COLOR: #31ba7c;
+  --EDIT-BGCOLOR: #4d4949;
+  --TEXT-COLOR: #fff;
+  --BORDER-COLOR: rgb(65, 64, 64);
+  --COMPLETED-COLOR: #a19d9d;
+  --BOX-SHADOW-COLOR: rgba(253, 250, 250, 0.651);
+}
+
+.l .nowrap {
   white-space: nowrap;
 }
 
 .todo-container {
   padding: 0 0.5rem 1rem;
   min-height: 100vh;
-  min-width: 100%;
+  min-width: 100vw;
   margin: 0 auto;
   position: relative;
-  border: 2px solid rgb(223, 217, 217);
+  border: 2px solid var(--BORDER-COLOR);
 }
 
 .completed {
   text-decoration: line-through;
-  color: #9c9292;
+  color: var(--COMPLETED-COLOR);
 }
 
 .editting {
-  background-color: #d4cfcf;
+  background-color: var(--EDIT-BGCOLOR);
   border-radius: 10px;
 }
 
@@ -40,24 +69,34 @@ body {
 .header {
   padding: 0.5rem 0.5rem 1rem;
   margin-bottom: 0.5rem;
-  box-shadow: 2px 2px 4px rgb(179, 176, 176);
+  box-shadow: 2px 2px 4px var(--BOX-SHADOW-COLOR);
   border-radius: 10px;
   position: sticky;
   right: 0;
   left: 0;
   top: 0.1rem;
-  background-color: whitesmoke;
+  background-color: var(--HEADER-BGCOLOR);
 }
 
 .navbar {
   display: flex;
   align-items: center;
-  color: #000;
-  margin: 1rem 0;
+  justify-content: space-between;
+  color: var(--TEXT-COLOR);
+  margin: 1rem 0 2rem;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.theme-icon {
+  cursor: pointer;
 }
 
 .todo-input {
-  background-color: rgb(231, 227, 227);
+  background-color: var(--INPUT-BGCOLOR);
   border-radius: 35px;
   display: flex;
   align-items: center;
@@ -73,6 +112,9 @@ body {
   background-color: transparent;
   font-size: 1rem;
   width: 80%;
+  color: var(--TEXT-COLOR);
+  font-weight: 500;
+  letter-spacing: inherit;
 }
 
 .todo-input button {
@@ -81,9 +123,10 @@ body {
   border-radius: 35px;
   outline: none;
   border: none;
-  color: #ffffff;
+  color: var(--INPUT-BTN-COLOR);
   cursor: pointer;
-  background-color: #31ba7c;
+  background-color: var(--INPUT-BTN-BGCOLOR);
+  font-weight: bold;
 }
 
 /***Main***/
@@ -115,7 +158,7 @@ body {
 .show {
   font-size: 0.8rem;
   cursor: pointer;
-  color: #000;
+  color: var(--SHOW-COLOR);
   display: inline;
 }
 
@@ -130,22 +173,10 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-  }
   .todo-container {
     min-height: 80vh;
     min-width: 74vw;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-  }
-
-  .header {
-    right: 14vw;
-    left: 14vw;
-    background-color: whitesmoke;
   }
 }
