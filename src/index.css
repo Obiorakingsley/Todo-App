@@ -16,11 +16,21 @@ body {
 }
 
 .todo-container {
-  padding: 1rem 0.5rem;
+  padding: 1rem;
   max-width: 768px;
   min-height: 100vh;
   margin: 0 auto;
   background-color: #ffffff;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #9c9292;
+}
+
+.editting {
+  background-color: #c5bebe;
+  border-radius: 10px;
 }
 
 /***Header***/
@@ -80,11 +90,15 @@ body {
   display: flex;
   gap: 0.5rem;
   font-size: 1.2rem;
-  cursor: pointer;
+  padding: 0.2rem 0.5rem;
 }
 .todo-text {
   max-width: 70vw;
   overflow-wrap: break-word;
+}
+
+.check-complete {
+  cursor: pointer;
 }
 .delete-todo {
   width: 22px;
@@ -92,7 +106,7 @@ body {
 }
 
 .show {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
   color: #000;
   display: inline;
@@ -101,6 +115,7 @@ body {
 .update-icon {
   display: flex;
   gap: 0.5rem;
+  padding: 0.2rem;
 }
 
 .update-icon img {

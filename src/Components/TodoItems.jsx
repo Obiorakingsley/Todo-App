@@ -5,7 +5,8 @@ import del from "../assets/images/delete.png";
 import edit from "../assets/images/edit.png";
 
 const TodoItems = (props) => {
-  const { text, isComplete, toggleChecked, deleteTodo } = props;
+  const { text, isComplete, toggleChecked, deleteTodo, editTodo, isEdit } =
+    props;
 
   ///Show more/show full text
   const [showFulltext, setShowFullText] = useState(false);
@@ -28,10 +29,17 @@ const TodoItems = (props) => {
 
   return (
     <main className="main">
-      <div className="item-container">
-        <div onClick={toggleChecked} className="item">
-          <img src={completed} alt="check icon" width={20} height={20} />
-          <div className="todo-text">
+      <div className={isEdit ? "editting item-container" : "item-container"}>
+        <div className="item">
+          <img
+            className="check-complete"
+            onClick={toggleChecked}
+            src={completed}
+            alt="check icon"
+            width={20}
+            height={20}
+          />
+          <div className={isComplete ? "todo-text completed" : "todo-text"}>
             {todoText}
             <div onClick={handleShow} className="show">
               {checkLenght && fullText}
@@ -39,7 +47,7 @@ const TodoItems = (props) => {
           </div>
         </div>
         <div className="update-icon">
-          <img src={edit} alt="" width="22" height="22" />
+          <img onClick={editTodo} src={edit} alt="" width="22" height="22" />
           <img
             onClick={deleteTodo}
             className="delete-todo"

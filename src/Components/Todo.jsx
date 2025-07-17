@@ -16,7 +16,7 @@ const Todo = () => {
   //Save items to localStorage
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(todo));
-  }, [todo]);
+  }, [todo, inputText]);
 
   //Get text from input
   function handleChange(event) {
@@ -33,10 +33,12 @@ const Todo = () => {
       text: inputText,
       isComplete: false,
       id: Date.now(),
+      edit: false,
+      lastEdited: Date.now(),
     };
 
     setTodo((prev) => {
-      return [...prev, newTodo];
+      return [newTodo, ...prev];
     });
     setInputText("");
   }
@@ -49,13 +51,35 @@ const Todo = () => {
     });
   }
 
-  //"Enter" button adds todo
-  function enterButton(event) {
-    if (event.key === "Enter") {
-      addTodo();
-    }
+  //Edit Todo
+
+  function editTodo(id, text) {
+    setTodo((prev) => {
+      return prev.map((item) => {
+        !item.edit ? setInputText(text) : setInputText("");
+        return item.id === id
+          ? { ...item, edit: !item.edit }
+          : { ...item, edit: false };
+      });
+    });
   }
 
+  //Save Edit
+  function saveEdit() {
+    if (!inputText) return;
+    setTodo((prev) => {
+      const updated = prev.map((item) =>
+        item.edit
+          ? { ...item, text: inputText, edit: false, lastEdited: Date.now() }
+          : item
+      );
+      return prev === updated
+        ? updated
+        : updated.sort((a, b) => b.lastEdited - a.lastEdited);
+    });
+
+    setInputText("");
+  }
   //Uncheck/Check items
   function toggleChecked(id) {
     setTodo(
@@ -80,12 +104,31 @@ const Todo = () => {
           toggleChecked(todo.id);
         }}
         isComplete={todo.isComplete}
+        isEdit={todo.edit}
+        editTodo={() => {
+          editTodo(todo.id, todo.text);
+        }}
         deleteTodo={() => {
           deleteTodo(todo.id);
         }}
       />
     );
   });
+
+  const hasTrue = todo.some((item) => item.edit === true);
+
+  //"Enter" button adds todo
+  function enterButton(event) {
+    if (event.key === "Enter") {
+      updateTodo();
+    }
+  }
+
+  //Update Todo
+
+  function updateTodo() {
+    hasTrue ? saveEdit() : addTodo();
+  }
 
   return (
     <div className="todo-container">
@@ -104,7 +147,8 @@ const Todo = () => {
             type="text"
             value={inputText}
           />
-          <button onClick={addTodo}>Add</button>
+
+          <button onClick={updateTodo}>{hasTrue ? "Save" : "Add"}</button>
         </div>
       </header>
       {todos}
