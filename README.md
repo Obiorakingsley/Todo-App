@@ -1,12 +1,79 @@
-# React + Vite
+# To-Do List Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This is a feature-rich To-Do List application built with React that allows users to:
+- Add, edit, and delete tasks
+- Mark tasks as complete/incomplete
+- Toggle between light and dark themes
+- View tasks with a "show more/show less" functionality for long text
+- Experience a confetti celebration when all tasks are completed
+- Persist todos and theme preference in localStorage
+- Responsive design with intuitive UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app includes custom icons for different states and themes, and provides visual feedback for user interactions.
 
-## Expanding the ESLint configuration
+![Screenshot](./screenshot.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- ✨ Add, edit, and delete tasks
+- ✅ Mark tasks as complete/incomplete
+- 🌓 Toggle between light and dark themes
+- 📝 "Show more/show less" functionality for long task descriptions
+- 🎉 Confetti celebration when all tasks are completed
+- 💾 Persistent storage using localStorage
+- ⌨️ Keyboard support (Enter key to add/save tasks)
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/todo-list-app.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd todo-list-app
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+## Usage
+
+1. Type your task in the input field and press "Add" or Enter key
+2. Click the checkbox to mark a task as complete
+3. Click the edit icon to modify a task
+4. Click the delete icon to remove a task
+5. Toggle the theme icon in the top-right corner to switch between light/dark modes
+6. Click "..." on long tasks to expand/collapse the full text
+
+## Dependencies
+
+- React
+- React DOM
+- React Confetti (for celebration effect)
+
+## Folder Structure
+
+```
+/src
+  /assets
+    /images       # Contains all application icons
+  /components    # React components
+    Todo.js      # Main component
+    TodoItems.js # Individual todo item component
+    Confetti.js  # Celebration component
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
