@@ -9,21 +9,27 @@ import Dark from "../assets/images/dark.png";
 const Todo = () => {
   const [todo, setTodo] = useState(loadFromStorage() || []);
   const [inputText, setInputText] = useState("");
-  const [lightTheme, setLightTheme] = useState(true);
+  const [lightTheme, setLightTheme] = useState(loadTheme());
 
   //Load items from localStorage
   function loadFromStorage() {
     const storedItems = localStorage.getItem("todo");
     return JSON.parse(storedItems) || "[]";
   }
+  //Load theme from localStorage
+  function loadTheme() {
+    const storedTheme = localStorage.getItem("lightTheme");
+    return JSON.parse(storedTheme);
+  }
 
-  //Save items to localStorage
+  //Save items/theme to localStorage
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(todo));
+    localStorage.setItem("lightTheme", JSON.stringify(lightTheme));
 
     const edit = todo.every((item) => !item.edit);
     edit && setInputText("");
-  }, [todo]);
+  }, [todo, lightTheme]);
 
   //Get text from input
   function handleChange(event) {
