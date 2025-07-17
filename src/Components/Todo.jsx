@@ -12,9 +12,15 @@ const Todo = () => {
   const [lightTheme, setLightTheme] = useState(loadTheme());
 
   //Load items from localStorage
+
   function loadFromStorage() {
-    const storedItems = localStorage.getItem("todo");
-    return JSON.parse(storedItems) || "[]";
+    try {
+      const storedItems = localStorage.getItem("todo");
+      return storedItems ? JSON.parse(storedItems) : [];
+    } catch (error) {
+      console.error("Failed to parse todos from localStorage", error);
+      return [];
+    }
   }
   //Load theme from localStorage
   function loadTheme() {
