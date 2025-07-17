@@ -151,7 +151,7 @@ const Todo = () => {
           <button onClick={updateTodo}>{hasTrue ? "Save" : "Add"}</button>
         </div>
       </header>
-      {todos}
+      <main>{todos}</main>
     </div>
   );
 };

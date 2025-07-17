@@ -28,37 +28,35 @@ const TodoItems = (props) => {
   const completed = isComplete ? checked : unchecked;
 
   return (
-    <main className="main">
-      <div className={isEdit ? "editting item-container" : "item-container"}>
-        <div className="item">
-          <img
-            className="check-complete"
-            onClick={toggleChecked}
-            src={completed}
-            alt="check icon"
-            width={20}
-            height={20}
-          />
-          <div className={isComplete ? "todo-text completed" : "todo-text"}>
-            {todoText}
-            <div onClick={handleShow} className="show">
-              {checkLenght && fullText}
-            </div>
+    <div className={isEdit ? "editting item-container" : "item-container"}>
+      <div className="item">
+        <img
+          className="check-complete"
+          onClick={toggleChecked}
+          src={completed}
+          alt="check icon"
+          width={20}
+          height={20}
+        />
+        <div className={isComplete ? "todo-text completed" : "todo-text"}>
+          {todoText}
+          <div onClick={handleShow} className="show">
+            {checkLenght && fullText}
           </div>
         </div>
-        <div className="update-icon">
-          <img onClick={editTodo} src={edit} alt="" width="22" height="22" />
-          <img
-            onClick={deleteTodo}
-            className="delete-todo"
-            src={del}
-            alt="delete icon"
-            width="22"
-            height="22"
-          />
-        </div>
       </div>
-    </main>
+      <div className="update-icon">
+        <img onClick={editTodo} src={edit} alt="" width="22" height="22" />
+        <img
+          onClick={deleteTodo}
+          className="delete-todo"
+          src={del}
+          alt="delete icon"
+          width="22"
+          height="22"
+        />
+      </div>
+    </div>
   );
 };
 
